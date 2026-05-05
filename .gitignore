@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+
+# Tauri build output
+src-tauri/target/
+
+# Tauri generated files (rebuilt on dev/build)
+src-tauri/gen/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
