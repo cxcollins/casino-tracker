@@ -27,12 +27,12 @@ export async function initDb() {
   await db.execute(`
     CREATE TABLE IF NOT EXISTS transactions (
       id          INTEGER PRIMARY KEY AUTOINCREMENT,
-      amount      REAL    NOT NULL,
-      type        TEXT    NOT NULL CHECK(type IN ('income','expense')),
-      category    TEXT    NOT NULL,
+      income      REAL DEFAULT 0,
+      expense     REAL DEFAULT 0,
+      cashback    REAL DEFAULT 0,
+      website     TEXT    NOT NULL,
       description TEXT,
-      date        TEXT    NOT NULL,
-      cashback    REAL
+      date        TEXT    NOT NULL
     )
   `)
 }
@@ -45,8 +45,8 @@ export async function getTransactions() {
 export async function addTransaction(tx) {
   const db = await getDb()
   await db.execute(
-    'INSERT INTO transactions (amount, type, category, description, date, cashback) VALUES (?, ?, ?, ?, ?, ?)',
-    [tx.amount, tx.type, tx.category, tx.description ?? null, tx.date, tx.cashback ?? null],
+    'INSERT INTO transactions (income, expense, cashback, website, description, date) VALUES (?, ?, ?, ?, ?, ?)',
+    [tx.income ?? 0, tx.expense ?? 0, tx.cashback ?? 0, tx.website, tx.description ?? null, tx.date],
   )
 }
 

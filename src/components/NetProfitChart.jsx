@@ -15,7 +15,7 @@ export function NetProfitChart({ transactions }) {
   const dailyMap = {}
   for (const tx of sorted) {
     if (!dailyMap[tx.date]) dailyMap[tx.date] = 0
-    dailyMap[tx.date] += tx.type === 'income' ? Number(tx.amount) : -Number(tx.amount)
+    dailyMap[tx.date] += Number(tx.income) - Number(tx.expense) + Number(tx.cashback)
   }
 
   const startDate = sorted[0].date
