@@ -22,22 +22,22 @@ export function SpendingOverTime({ transactions }) {
 
   if (data.length === 0) {
     return (
-      <div className="bg-white rounded-xl p-6 shadow text-center text-gray-400">
+      <div className="bg-gray-900 rounded-xl p-6 border border-gray-800 text-center text-gray-600">
         No data yet
       </div>
     )
   }
 
   return (
-    <div className="bg-white rounded-xl p-6 shadow">
-      <h2 className="text-lg font-semibold text-gray-800 mb-4">Income vs Expenses Over Time</h2>
+    <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
+      <h2 className="text-lg font-semibold text-white mb-4">Income vs Expenses Over Time</h2>
       <ResponsiveContainer width="100%" height={280}>
         <LineChart data={data} margin={{ top: 4, right: 16, left: 0, bottom: 4 }}>
-          <XAxis dataKey="month" tick={{ fontSize: 12 }} />
-          <YAxis tick={{ fontSize: 12 }} tickFormatter={v => `$${v}`} />
-          <Tooltip formatter={(v) => [`$${v}`]} />
-          <Legend />
-          <Line type="monotone" dataKey="income" stroke="#22c55e" strokeWidth={2} dot={false} name="Income" />
+          <XAxis dataKey="month" tick={{ fontSize: 12, fill: '#9ca3af' }} axisLine={{ stroke: '#374151' }} tickLine={{ stroke: '#374151' }} />
+          <YAxis tick={{ fontSize: 12, fill: '#9ca3af' }} tickFormatter={v => `$${v}`} axisLine={{ stroke: '#374151' }} tickLine={{ stroke: '#374151' }} />
+          <Tooltip formatter={(v) => [`$${v}`]} contentStyle={{ backgroundColor: '#111827', border: '1px solid #374151', borderRadius: '8px', color: '#f3f4f6' }} />
+          <Legend wrapperStyle={{ color: '#9ca3af' }} />
+          <Line type="monotone" dataKey="income" stroke="#10b981" strokeWidth={2} dot={false} name="Income" />
           <Line type="monotone" dataKey="expenses" stroke="#ef4444" strokeWidth={2} dot={false} name="Expenses" />
         </LineChart>
       </ResponsiveContainer>
