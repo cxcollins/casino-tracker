@@ -4,7 +4,13 @@ let db = null
 
 async function getDb() {
   if (!db) {
-    db = await Database.load('sqlite:casino-tracker.db')
+    let dbName
+    if (import.meta.env.VITE_MODE === 'test') {
+      dbName = 'casino-tracker-test.db'
+    } else {
+      dbName = 'casino-tracker.db'
+    }
+    db = await Database.load(`sqlite:${dbName}`)
   }
   return db
 }
