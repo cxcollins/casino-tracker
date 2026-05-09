@@ -32,7 +32,8 @@ export async function initDb() {
       cashback    REAL DEFAULT 0,
       website     TEXT    NOT NULL,
       description TEXT,
-      date        TEXT    NOT NULL
+      date        TEXT    NOT NULL,
+      pending     INTEGER DEFAULT 0
     )
   `)
 }
@@ -45,8 +46,16 @@ export async function getTransactions() {
 export async function addTransaction(tx) {
   const db = await getDb()
   await db.execute(
-    'INSERT INTO transactions (income, expense, cashback, website, description, date) VALUES (?, ?, ?, ?, ?, ?)',
-    [tx.income ?? 0, tx.expense ?? 0, tx.cashback ?? 0, tx.website, tx.description ?? null, tx.date],
+    'INSERT INTO transactions (income, expense, cashback, website, description, date, pending) VALUES (?, ?, ?, ?, ?, ?, ?)',
+    [tx.income ?? 0, tx.expense ?? 0, tx.cashback ?? 0, tx.website, tx.description ?? null, tx.date, tx.pending ? 1 : 0],
+  )
+}
+
+export async function updateTransaction(id, tx) {
+  const db = await getDb()
+  await db.execute(
+    'UPDATE transactions SET income = ?, expense = ?, cashback = ?, website = ?, description = ?, date = ?, pending = ? WHERE id = ?',
+    [tx.income ?? 0, tx.expense ?? 0, tx.cashback ?? 0, tx.website, tx.description ?? null, tx.date, tx.pending ? 1 : 0, id],
   )
 }
 

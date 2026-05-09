@@ -59,15 +59,16 @@ export function TransactionForm({ onAdd }) {
           />
         </div>
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Cashback</label>
+          <label className="block text-sm text-gray-400 mb-1">Cashback %</label>
           <input
             type="number"
             step="0.01"
             min="0"
+            max="100"
             value={form.cashback}
             onChange={e => set('cashback', e.target.value)}
             className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none"
-            placeholder="0.00"
+            placeholder="0"
           />
         </div>
         <div>
