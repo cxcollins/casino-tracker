@@ -51,5 +51,4 @@ categories(id, name TEXT, type TEXT)
 
 ## Environment notes
 
-- npm registry is `https://npm.apple.com` (Apple internal). Requires `NODE_EXTRA_CA_CERTS="$HOME/corp-ca.pem"` for SSL to work — this is set in `~/.zshrc` but may need `source ~/.zshrc` in new shells.
 - `npm run tauri dev` cannot be run from within Claude Code's sandbox (port binding is blocked). Run it directly in a terminal.
